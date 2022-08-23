@@ -9,12 +9,25 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var changeFontSlider: UISlider!
+   
     @IBOutlet weak var textLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        
     }
+    
 
+    func changeValueSlider(value: CGFloat){
+        textLabel.font = UIFont.systemFont(ofSize: value)
+        textLabel.textColor = .black
+    }
+    
+    @IBAction func sliderChangeAction(_ sender: UISlider) {
+        changeValueSlider(value: CGFloat(changeFontSlider.value))
+    }
+    
     @IBAction func addButton(_ sender: Any) {
         let alert = UIAlertController(title: "Добавление текста", message: "Введите текст", preferredStyle: .alert)
         let add = UIAlertAction(title: "Добавить", style: .default, handler: {_ in

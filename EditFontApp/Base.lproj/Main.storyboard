@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--Edit text-->
         <scene sceneID="LIM-lX-7Hd">
             <objects>
                 <viewController id="UMK-wv-n0m" sceneMemberID="viewController">
@@ -18,11 +18,11 @@
                         <viewLayoutGuide key="safeArea" id="PV2-pq-ZcV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="QJz-2G-sTk"/>
+                    <tabBarItem key="tabBarItem" title="Edit text" selectedImage="pencil" catalog="system" id="QJz-2G-sTk"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAf-U4-hrK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1340.5797101449277" y="226.33928571428569"/>
+            <point key="canvasLocation" x="548" y="360"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4g7-Aq-ylG">
@@ -32,9 +32,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="minus" catalog="system" maximumValueImage="plus" translatesAutoresizingMaskIntoConstraints="NO" id="Tqx-Dx-DMt">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="17" minValue="8" maxValue="42" minimumValueImage="minus" catalog="system" maximumValueImage="plus" translatesAutoresizingMaskIntoConstraints="NO" id="Tqx-Dx-DMt">
                                 <rect key="frame" x="18" y="359" width="378" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="GWh-O7-BXI"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sliderChangeAction:" destination="Upq-WV-4ty" eventType="valueChanged" id="Kvg-YA-bnt"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWc-A8-uWD">
                                 <rect key="frame" x="20" y="158" width="374" height="100"/>
@@ -50,8 +55,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="pWc-A8-uWD" firstAttribute="leading" secondItem="4eY-qy-qTH" secondAttribute="leading" constant="20" id="Agi-LE-s3v"/>
+                            <constraint firstItem="Tqx-Dx-DMt" firstAttribute="trailing" secondItem="pWc-A8-uWD" secondAttribute="trailing" id="BZi-kO-oWG"/>
                             <constraint firstItem="pWc-A8-uWD" firstAttribute="top" secondItem="4eY-qy-qTH" secondAttribute="top" constant="70" id="Eji-iW-A3c"/>
+                            <constraint firstItem="Tqx-Dx-DMt" firstAttribute="leading" secondItem="pWc-A8-uWD" secondAttribute="leading" id="Kf1-H7-aVp"/>
                             <constraint firstItem="4eY-qy-qTH" firstAttribute="trailing" secondItem="pWc-A8-uWD" secondAttribute="trailing" constant="20" id="eNc-E4-8Rg"/>
+                            <constraint firstItem="4eY-qy-qTH" firstAttribute="bottom" secondItem="Tqx-Dx-DMt" secondAttribute="bottom" constant="425" id="rj8-36-XLc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lRC-1k-vCI">
@@ -62,6 +70,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="changeFontSlider" destination="Tqx-Dx-DMt" id="qH4-A8-WKS"/>
                         <outlet property="textLabel" destination="pWc-A8-uWD" id="Lp2-uk-ceL"/>
                     </connections>
                 </viewController>
@@ -87,11 +96,11 @@
             </objects>
             <point key="canvasLocation" x="-458" y="-76"/>
         </scene>
-        <!--Item 1-->
+        <!--Add text-->
         <scene sceneID="dx2-4W-VXu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jmb-Td-9bK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="75B-OQ-oJt"/>
+                    <tabBarItem key="tabBarItem" title="Add text" selectedImage="plus" catalog="system" id="75B-OQ-oJt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z8t-Go-Nik">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -109,6 +118,7 @@
     </scenes>
     <resources>
         <image name="minus" catalog="system" width="128" height="24"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
