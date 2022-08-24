@@ -12,30 +12,39 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var textColorButtonOutlet: UIButton!
     @IBOutlet weak var changeFontSlider: UISlider!
-      
-    var arrayColor = [("black", UIColor.black),
-                      ("blue", UIColor.blue),
-                      ("red", UIColor.red),
-                      ("green", UIColor.green),
-                      ("pink", UIColor.systemPink)]
-    var arrayFont = ["Arial", "Zapfino", "Apple SD Gothic Neo"
-    ]
     @IBOutlet weak var textLabel: UILabel!
     
+    //экземпляр класса FontModel
+    var fontModel = FontModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
      
-       // createSwitch()
+        createSwitchShadow()
+    }
+   
+    //MARK: - Метод создания switch
+    func createSwitchShadow(){
+        let shadowSwitch = UISwitch()
+        shadowSwitch.frame = CGRect(x: 20, y: 330, width: 0, height: 0)
+        shadowSwitch.addTarget(self, action: #selector(shadowSwitchAddTarget), for: .allTouchEvents)
+        self.view.addSubview(shadowSwitch)
+    }
+    @objc func shadowSwitchAddTarget(sender: UISwitch){
+        if sender.isOn{
+            textLabel.shadowColor = .black
+            textLabel.shadowOffset = .init(width: 1, height: 1)
+        } else{
+            textLabel.shadowOffset = .init(width: 0, height: 0)
+        }
     }
     
-    
-
-   
     func changeValueSlider(value: CGFloat){
         textLabel.font = textLabel.font.withSize(value)
     }
     
+    
+    //MARK: - Action
     @IBAction func sliderChangeAction(_ sender: UISlider) {
         changeValueSlider(value: CGFloat(changeFontSlider.value))
     }
@@ -84,9 +93,9 @@ extension ViewController: UIPickerViewDataSource{
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0{
-            return arrayFont.count
+            return fontModel.arrayFont.count
         } else {
-            return arrayColor.count
+            return fontModel.arrayColor.count
         }
     }
 
@@ -95,17 +104,17 @@ extension ViewController: UIPickerViewDataSource{
 extension ViewController: UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 0 {
-            return arrayFont[row]
+            return fontModel.arrayFont[row]
         } else{
-            return arrayColor[row].0
+            return fontModel.arrayColor[row].0
         }
         
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 0{
-            textLabel.font = UIFont(name: arrayFont[row], size: CGFloat(changeFontSlider.value))
+            textLabel.font = UIFont(name: fontModel.arrayFont[row], size: CGFloat(changeFontSlider.value))
         } else if pickerView.tag == 1 {
-            textLabel.textColor = arrayColor[row].1
+            textLabel.textColor = fontModel.arrayColor[row].1
 
         }
     }
